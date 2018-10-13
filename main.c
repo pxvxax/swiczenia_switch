@@ -1,49 +1,49 @@
 #include <stdio.h>
 #include <math.h>
-int main(void)
-{
 
-    double a,b,wynik;
-    int wybor;
+void wyswietl_informacje(double *a, double *b);
 
+char wczytaj(char *wybor);
 
-    printf("KALKULATOR.\n");
-    printf("wprowadz pierwsza liczbe:\n");
-    scanf("%lf",&a);
-    printf("wprowadz druga liczbe:\n");
-    scanf("%lf", &b);
+int main(void) {
+
+    double a, b, wynik;
+    char wybor;
 
 
-    printf("wybhierz dzialanie:\n1. Dodawanie\n2. Odejmowanie\n3. Mnozenie\n4. Dzielenie\n");
-    scanf("%i", &wybor);
+    wyswietl_informacje(&a, &b);
 
 
-    switch(wybor)
-    {
-        case 1:
-            wynik = a+b;
-            break;
+    wybor = wczytaj(&wybor);
+
+
+    switch (wybor) {
+        case '+':
+            wynik = a + b;
+
             printf("wynik dzialania to %lf\n", wynik);
-        case 2:
-            wynik = a-b;
             break;
+        case '-':
+            wynik = a - b;
+
             printf("wynik dzialania to %lf\n", wynik);
-        case 3:
-            wynik = a*b;
-            if((a ==0) || (b ==0)){
-        printf("Nie mnóż przez 0");
-    }
-            if((a!=0) && (b!=0)) {
+            break;
+        case '*':
+            wynik = a * b;
+            if ((a == 0) || (b == 0)) {
+                printf("Nie mnóż przez 0");
+            }
+            if ((a != 0) && (b != 0)) {
                 printf("wynik dzialania to %lf\n", wynik);
             }
 
             break;
-        case 4:
-            wynik = a/b;
-            if((a ==0) || (b ==0)){
+        case '/':
+            wynik = a / b;
+            if ((a == 0) || (b == 0)) {
                 printf("Nie dziel przez 0");
             }
-            if((a!=0) && (b!=0)) {
+            if ((a != 0) && (b != 0)) {
                 printf("wynik dzialania to %lf\n", wynik);
             }
             break;
@@ -51,5 +51,19 @@ int main(void)
 
     }
 
-        return 0;
+    return 0;
+}
+
+char wczytaj(char *wybor) {
+    printf("wybierz dzialanie:\n1. dodawanie\n2. odejmowanie\n3. mnożenie\n4. dzielenie\n");
+    scanf("%s", wybor);
+    return (*wybor);
+}
+
+void wyswietl_informacje(double *a, double *b) {
+    printf("KALKULATOR.\n");
+    printf("wprowadz pierwsza liczbe:\n");
+    scanf("%lf", a);
+    printf("wprowadz druga liczbe:\n");
+    scanf("%lf", b);
 }
